@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, request
 from email.message import EmailMessage
+from flask_cors import CORS, cross_origin
 import smtplib
 import ssl
 
 app = Flask(__name__)
-
+cors = CORS(app)
 
 @app.route('/<name>/<email>/<contact>/<dis>', methods=['GET','POST'])
+@cross_origin
 def sendMail(name, email, contact, dis):
     email_sender = "testdool983@gmail.com"
     email_password = "vfmcwrxnvvziuqzm"
