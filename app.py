@@ -8,11 +8,12 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/<name>/<email>/<contact>/<dis>', methods=['GET'])
+@app.route('/<name>/<email>/<contact>/<dis>', methods=['GET','POST'])
 @cross_origin()
 def sendMail(name, email, contact, dis):
     email_sender = "testdool983@gmail.com"
-    email_password = "vfmcwrxnvvziuqzm"
+    # email_password = "vfmcwrxnvvziuqzm"
+    email_password = "pqxiloodjgsmgcos"
     email_reciever = "doolwala.kimal@gmail.com"
 
     subject = name
@@ -26,7 +27,8 @@ def sendMail(name, email, contact, dis):
 
     context = ssl.create_default_context()
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+
+    with smtplib.SMTP_SSL('smtp.gmail.com', 464, context=context) as smtp:
         smtp.login(email_sender, email_password)
         smtp.sendmail(email_sender, email_reciever, em.as_string())
         print("..send")
